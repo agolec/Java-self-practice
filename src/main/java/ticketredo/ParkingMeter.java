@@ -1,4 +1,4 @@
-package ticketredo;
+package main.java.ticketredo;
 
 /**
  * The ParkingMeter class simulates a parking meter.

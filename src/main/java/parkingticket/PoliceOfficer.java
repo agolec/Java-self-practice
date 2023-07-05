@@ -1,4 +1,4 @@
-package parkingticket;
+package main.java.parkingticket;
 
 /**
  * Roles of the police officer class in regard to the ParkingTicket class:

@@ -1,4 +1,4 @@
-package parkingticket;
+package main.java.parkingticket;
 
 /**
  * The parking ticket class holds field variables of other classes:

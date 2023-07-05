@@ -1,4 +1,4 @@
-package ticketredo;
+package main.java.ticketredo;
 
 public enum CarColor {
     RED,ORANGE,YELLOW,

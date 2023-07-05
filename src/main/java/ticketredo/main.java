@@ -1,13 +1,18 @@
-package ticketredo;
+package main.java.ticketredo;
+
+import java.util.Scanner;
 
 public class main {
     public static void main(String[] args){
         ParkedCar car = new ParkedCar("Honda","Civic",
                 CarColor.BLUE,"XMLS",120);
-        //System.out.println("parked car info: " + car);
+        Scanner colorInput = new Scanner(System.in);
+        System.out.print("Enter a color input for the next car to make: ");
+        String colorString = colorInput.nextLine();
+        car.setColor(CarColor.GREEN);
+
 
         ParkingMeter meter = new ParkingMeter(4,55);
-        //System.out.println("\nMeter: " + meter);
 
         ParkingTicket ticket = new ParkingTicket();
 
@@ -27,4 +32,18 @@ public class main {
         }
 
     }
+    public boolean isNumeric(String stringToValidate){
+        boolean isNumeric = true;
+        for(int i = 0; i < stringToValidate.length(); i++){
+            if(Character.isDigit(stringToValidate.charAt(i))){
+                isNumeric = true;
+            } else {
+                isNumeric = false;
+                break;
+            }
+        }
+        return isNumeric;
+    }
+
+
 }
