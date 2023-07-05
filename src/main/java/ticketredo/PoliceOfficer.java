@@ -1,4 +1,4 @@
-package main.java.ticketredo;
+package ticketredo;
 
 public class PoliceOfficer {
     /**

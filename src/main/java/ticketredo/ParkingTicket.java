@@ -1,4 +1,4 @@
-package main.java.ticketredo;
+package ticketredo;
 
 /**
  *  This class should simulate a parking ticket.

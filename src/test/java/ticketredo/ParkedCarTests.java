@@ -1,7 +1,7 @@
 package test.java.ticketredo;
 
-import main.java.ticketredo.CarColor;
-import main.java.ticketredo.ParkedCar;
+import ticketredo.CarColor;
+import ticketredo.ParkedCar;
 import org.junit.Assert;
 import org.junit.Test;
 

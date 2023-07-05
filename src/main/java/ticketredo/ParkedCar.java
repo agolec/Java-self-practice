@@ -1,4 +1,4 @@
-package main.java.ticketredo;
+package ticketredo;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package main.java.parkingticket;
+package parkingticket;
 
 /**
  * The parking ticket class holds field variables of other classes:
@@ -42,9 +42,10 @@ public class ParkingTicket {
     }
     //Setters
 
-    public void setFine(int fine){
+    public void setFine(int fine) {
         this.fineAmount = fine;
     }
+
     public void setParkedCar(ParkedCar car){
         this.parkedCar = new ParkedCar(car);
     }

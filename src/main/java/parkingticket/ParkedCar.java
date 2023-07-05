@@ -1,4 +1,4 @@
-package main.java.parkingticket;
+package parkingticket;
 
 public class ParkedCar {
 
