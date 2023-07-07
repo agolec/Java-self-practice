@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
+import static utilityMethods.StringUtility.isInteger;
+
 public class Employee {
     private String name;
     private String employeeNumber;
@@ -155,14 +157,14 @@ public class Employee {
         return Integer.parseInt(string);
 
     }
-    private boolean isInteger(String s){
-        try{
-            Integer.parseInt(s);
-        } catch(NumberFormatException e){
-            return false;
-        }
-        return true;
-    }
+//    private boolean isInteger(String s){
+//        try{
+//            Integer.parseInt(s);
+//        } catch(NumberFormatException e){
+//            return false;
+//        }
+//        return true;
+//    }
 
     private boolean isEmployeeNumberValid(String employeeNumber){
         boolean isValid;

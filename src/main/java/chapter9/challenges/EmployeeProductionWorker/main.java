@@ -7,6 +7,11 @@ public class main {
         int date = 32;
         emp.setHireDate(1988,2,date);
         System.out.println(emp.getHireDate());
+
+        ProductionWorker pw = new ProductionWorker();
+        pw.setShift(3);
+
+        System.out.println("shift is: " + pw.getShift());
     }
 
 }
