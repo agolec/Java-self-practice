@@ -11,7 +11,7 @@ public class main {
         ProductionWorker pw = new ProductionWorker();
         pw.setShift(3);
 
-        System.out.println("shift is: " + pw.getShift());
+        System.out.println("Shift is: " + pw.getShiftString().toUpperCase());
     }
 
 }

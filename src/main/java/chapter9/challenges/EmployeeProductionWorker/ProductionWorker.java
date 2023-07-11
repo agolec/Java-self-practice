@@ -41,6 +41,17 @@ public class ProductionWorker extends Employee{
     public int getShift(){
         return this.shift;
     }
+    public String getShiftString(){
+        String shiftString;
+        if(this.shift == 0){
+            shiftString = "night";
+        } else if (this.shift == 1) {
+            shiftString = "day";
+        } else {
+            shiftString = "-1";
+        }
+        return shiftString;
+    }
     public double getPayRateInput(){
         double hourlyPayRate = 0;
         hourlyPayRate = StringUtility.getDoubleInput("Enter a new payrate: ","Error: Input was not numeric: ");
