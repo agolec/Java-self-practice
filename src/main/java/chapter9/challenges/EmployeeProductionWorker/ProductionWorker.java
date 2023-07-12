@@ -11,26 +11,39 @@ public class ProductionWorker extends Employee{
     private double hourlyPayRate;
 
     ProductionWorker(){
-        shift = 0;
-        hourlyPayRate = 0;
+        super();
+        this.shift = -1;
+        this.hourlyPayRate = 0;
 
     }
+    ProductionWorker(int shift){
+        super();
+        this.shift = shift;
+        this.hourlyPayRate = 0;
+    }
     void setShift(int shift){
+        boolean isValid = false;
+        int enteredShift = shift;
+
+        enteredShift = validateShiftEntered(isValid, enteredShift);
+        this.shift = enteredShift;
+
+    }
+
+    private int validateShiftEntered(boolean isValid, int shiftCheck) {
         final int DAY_SHIFT = 0;
         final int NIGHT_SHIFT = 1;
-
-        boolean isValid = false;
-        int shiftCheck = shift;
         if(shiftCheck == DAY_SHIFT || shiftCheck == NIGHT_SHIFT){
             isValid = true;
         }
         while(!isValid){
+            System.out.println("ERROR: Shift must be entered as 0 or 1: ");
             shiftCheck = getAnotherShiftInput();
             isValid = (shiftCheck == DAY_SHIFT || shiftCheck == NIGHT_SHIFT);
         }
-        this.shift = shiftCheck;
-
+        return shiftCheck;
     }
+
     void setHourlyPayRate(double hourlyPayRate){
         double payRateInput = hourlyPayRate;
         if(payRateInput < 0){
