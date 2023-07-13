@@ -12,9 +12,13 @@ package game.com.agolec.rain;
  * Youtube video recorded: 2013
  */
 
+import game.com.agolec.rain.graphics.Screen;
+
 import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 
 public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
@@ -26,13 +30,21 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private JFrame frame;
     private boolean running = false;
+    private Screen screen;
+    /**
+     * Rasters are rectangle arrays of pixels.
+     *
+     * Need to retrieve a writable raster.
+     */
+    private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
+    private int[] pixels = ((DataBufferInt)
+            image.getRaster().getDataBuffer()
+            ).getData();
 
     public Game(){
-        Dimension size = new Dimension(
-                (WIDTH * SCALE_MULTIPLIER),
-                (HEIGHT * SCALE_MULTIPLIER)
-        );
+        Dimension size = new Dimension((WIDTH * SCALE_MULTIPLIER), (HEIGHT * SCALE_MULTIPLIER));
         setPreferredSize(size);
+        screen = new Screen(WIDTH,HEIGHT);
         frame = new JFrame();
     }
 
@@ -41,7 +53,7 @@ public class Game extends Canvas implements Runnable {
      */
     public synchronized void start(){
         running = true;
-        thread = new Thread(this, "Display".toUpperCase());
+        thread = new Thread(this, "Display");
         thread.start();
     }
 
@@ -74,7 +86,7 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.BLUE);
+        g.setColor(new Color(30,255,30));
         g.fillRect(0,0,getWidth(),getHeight());
         g.dispose();
         bs.show();
