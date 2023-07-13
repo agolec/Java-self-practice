@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e5d14e-4212-4b1f-b355-a4db8a3aa74f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/com/agolec/rain/graphics/Screen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/com/agolec/rain/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/com/agolec/rain/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/com/agolec/rain/graphics/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/com/agolec/rain/graphics/Screen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/game/com/agolec/rain/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/game/com/agolec/rain/Game.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
