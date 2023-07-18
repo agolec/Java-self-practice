@@ -13,6 +13,7 @@ public class RetailPriceWindow extends JFrame {
     private JTextField wholesalePriceTextField;
     private JTextField markupPercentTextField;
     private JButton calculateButton;
+    private JButton someOtherButton;
 
     private JPanel panel;
 
@@ -30,6 +31,7 @@ public class RetailPriceWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         buildPanel();
         add(panel);
+        pack();
         setVisible(true);
     }
     private void buildPanel(){
@@ -39,9 +41,11 @@ public class RetailPriceWindow extends JFrame {
         markupPercentLabel = new JLabel("Enter markup percent: ");
         markupPercentTextField = new JTextField(3);
         calculateButton = new JButton("Calculate");
+        someOtherButton = new JButton("LMAO YEET");
 
         //Add Action Listener to the button.
         calculateButton.addActionListener(new CalcButtonListener());
+        someOtherButton.addActionListener(new CalcButtonListener());
 
 
         panel = new JPanel();
@@ -52,6 +56,7 @@ public class RetailPriceWindow extends JFrame {
         panel.add(markupPercentLabel);
         panel.add(markupPercentTextField);
         panel.add(calculateButton);
+        panel.add(someOtherButton);
     }
     //Private inner class CalcButtonListener implements the ActionListener class.
     private class CalcButtonListener implements ActionListener{
@@ -63,6 +68,13 @@ public class RetailPriceWindow extends JFrame {
 
                 double retailPrice = calculateRetailPrice(wholeSalePrice, markupPercent);
                 NumberFormat formatter = NumberFormat.getCurrencyInstance();
+                if(e.getSource() == calculateButton){
+                    JOptionPane.showMessageDialog(null,"Welcome to the calculate button. " +
+                                                                                "\nAction command: \'" + e.getActionCommand() + "\'");
+                } else {
+                    JOptionPane.showMessageDialog(null,"You clicked some other button " +
+                            "\nAction command: \'" + e.getActionCommand() + "\'");
+                }
 
                 JOptionPane.showMessageDialog(null, "Retail price is : " + formatter.format(retailPrice));
             } catch(NumberFormatException er){
@@ -71,8 +83,7 @@ public class RetailPriceWindow extends JFrame {
             }
         }
         private double calculateRetailPrice(double wholesalePrice, double markupPercent){
-            double retailPrice = (wholesalePrice + wholesalePrice * (markupPercent / 100));
-            return retailPrice;
+            return (wholesalePrice + wholesalePrice * (markupPercent / 100));
         }
 
     }
