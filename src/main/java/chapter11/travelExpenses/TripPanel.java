@@ -111,49 +111,21 @@ public class TripPanel extends JPanel {
         final int DAILY_TAXI_EXPENSE_ALLOWANCE = 20;
         final int DAILY_PARKING_EXPENSE_ALLOWANCE = 10;
         final double CENTS_PER_MILE_TRAVELED = 0.27;
-        totalExpenses += (getDays() * DAILY_MEAL_EXPENSE_ALLOWANCE);
-
-//        if(!airfareTF.getText().isEmpty()){
-//            double airFare = Double.parseDouble(airfareTF.getText().toString());
-//            totalExpenses += airFare;
-//        }
+        totalExpenses += calculateMealExpenses(DAILY_MEAL_EXPENSE_ALLOWANCE);
         totalExpenses = getSingleFeeExpense(airfareTF);
-
-//        if(!lodgingTF.getText().isEmpty()){
-//            double lodging = Double.parseDouble(lodgingTF.getText().toString());
-//            totalExpenses += (getDays() * DAILY_LODGING_EXPENSE_ALLOWANCE);
-//        }
         totalExpenses = getCalculatedFeeExpense(lodgingTF,DAILY_LODGING_EXPENSE_ALLOWANCE);
-//        if(!conferenceTF.getText().isEmpty()){
-//            double conferenceFees = Double.parseDouble(conferenceTF.getText());
-//            totalExpenses += conferenceFees;
-//        }
         totalExpenses = getSingleFeeExpense(conferenceTF);
-
-//        if(!taxiChargesTF.getText().isEmpty()){
-//            totalExpenses += (getDays() * DAILY_TAXI_EXPENSE_ALLOWANCE);
-//        }
         totalExpenses = getCalculatedFeeExpense(taxiChargesTF,DAILY_TAXI_EXPENSE_ALLOWANCE);
-//        if(!parkingFeeTF.getText().isEmpty()){
-//            totalExpenses += (getDays() * DAILY_PARKING_EXPENSE_ALLOWANCE);
-//        }
         totalExpenses = getCalculatedFeeExpense(parkingFeeTF,DAILY_PARKING_EXPENSE_ALLOWANCE);
-
-//        if(!milesDrivenTF.getText().isEmpty()){
-//            double miles = Double.parseDouble(milesDrivenTF.getText());
-//            if(miles > 0){
-//                totalExpenses += miles * CENTS_PER_MILE_TRAVELED;
-//            } else {
-//                totalExpenses += 0;
-//            }
-//        }
         totalExpenses = getCalculatedFeeExpense(milesDrivenTF,(int)CENTS_PER_MILE_TRAVELED);
-//        if(!carRentalTF.getText().isEmpty()){
-//            totalExpenses += Double.parseDouble(carRentalTF.getText());
-//        }
         totalExpenses = getSingleFeeExpense(carRentalTF);
         return totalExpenses;
     }
+
+    private int calculateMealExpenses(int DAILY_MEAL_EXPENSE_ALLOWANCE) {
+        return getDays() * DAILY_MEAL_EXPENSE_ALLOWANCE;
+    }
+
     private double getSingleFeeExpense(JTextField expenseTextField){
         if(!expenseTextField.getText().isEmpty()){
             double fee = Double.parseDouble(expenseTextField.getText().toString());
