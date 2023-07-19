@@ -112,9 +112,9 @@ public class TravelExpensesWindow extends JFrame {
             JOptionPane.showMessageDialog(null,
                     "\nTotal Expenses :$" + df.format(tripPanel.getTotalExpenses())
             + "\nTotal Allowed Expenses : $" + df.format(tripPanel.getTotalAllowedExpenses())
-            + "\nExcess: $" + df.format(tripPanel.getSavedAmount())
-            + "\nSaved Amount: $" + df.format(tripPanel.getSavedAmount())
-                    + "\nExpenses : $" + JOptionPane.INFORMATION_MESSAGE);
+            + "\nExcess: $" + df.format(tripPanel.getExcess())
+            + "\nSaved Amount: $" + df.format(tripPanel.getSavedAmount()),
+                            "Expenses", JOptionPane.INFORMATION_MESSAGE);
 
         }
     }

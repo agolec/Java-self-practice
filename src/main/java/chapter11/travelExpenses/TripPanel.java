@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TripPanel extends JPanel {
+
     private static final int ALLOWED_EXPENSES = 6000;
+    private double totalExpenses = 0.0;
 
     private JLabel dayLabel = new JLabel("Days on trip");
     private JLabel airfareLabel = new JLabel("Airfare");
@@ -14,6 +16,7 @@ public class TripPanel extends JPanel {
     private JLabel taxiChargesLabel = new JLabel("Taxi charges");
     private JLabel conferenceLabel = new JLabel("Conference fee");
     private JLabel lodgingLabel = new JLabel("Lodging charges");
+
     private JTextField dayTF = new JTextField(10);
     private JTextField airfareTF = new JTextField(10);
     private JTextField carRentalTF = new JTextField(10);
@@ -22,10 +25,11 @@ public class TripPanel extends JPanel {
     private JTextField taxiChargesTF = new JTextField(10);
     private JTextField conferenceTF = new JTextField(10);
     private JTextField lodgingTF = new JTextField(10);
-    private double totalExpenses = 0.0;
+
     TripPanel(){
         buildPanel();
     }
+
     private void buildPanel(){
         setLayout(new GridLayout(8,8));
         setBackground(Color.decode("#FF3333"));
@@ -44,6 +48,12 @@ public class TripPanel extends JPanel {
         add(parkingFeeLabel);
         add(parkingFeeTF);
 
+        add(taxiChargesLabel);
+        add(taxiChargesTF);
+
+        add(conferenceLabel);
+        add(conferenceTF);
+
         add(lodgingLabel);
         add(lodgingTF);
 
@@ -58,7 +68,7 @@ public class TripPanel extends JPanel {
         parkingFeeLabel.setForeground(Color.WHITE);
         dayLabel.setForeground(Color.WHITE);
 
-        taxiChargesLabel.setForeground(Color.RED);
+        taxiChargesLabel.setForeground(Color.WHITE);
         conferenceLabel.setForeground(Color.WHITE);
         lodgingLabel.setForeground(Color.WHITE);
 
@@ -74,6 +84,8 @@ public class TripPanel extends JPanel {
         milesDrivenTF.setBackground(Color.RED);
         milesDrivenTF.setForeground(Color.WHITE);
 
+        parkingFeeTF.setForeground(Color.WHITE);
+
         taxiChargesTF.setBackground(Color.RED);
         taxiChargesTF.setForeground(Color.WHITE);
 
@@ -82,6 +94,7 @@ public class TripPanel extends JPanel {
 
         lodgingTF.setBackground(Color.RED);
         lodgingTF.setForeground(Color.WHITE);
+
         parkingFeeTF.setBackground(Color.RED);
     }
     private int getDays(){
@@ -100,34 +113,57 @@ public class TripPanel extends JPanel {
         final double CENTS_PER_MILE_TRAVELED = 0.27;
         totalExpenses += (getDays() * DAILY_MEAL_EXPENSE_ALLOWANCE);
 
-        if(!airfareTF.getText().isEmpty()){
-            double airFare = Double.parseDouble(airfareTF.getText().toString());
-            totalExpenses += airFare;
+//        if(!airfareTF.getText().isEmpty()){
+//            double airFare = Double.parseDouble(airfareTF.getText().toString());
+//            totalExpenses += airFare;
+//        }
+        totalExpenses = getSingleFeeExpense(airfareTF);
+
+//        if(!lodgingTF.getText().isEmpty()){
+//            double lodging = Double.parseDouble(lodgingTF.getText().toString());
+//            totalExpenses += (getDays() * DAILY_LODGING_EXPENSE_ALLOWANCE);
+//        }
+        totalExpenses = getCalculatedFeeExpense(lodgingTF,DAILY_LODGING_EXPENSE_ALLOWANCE);
+//        if(!conferenceTF.getText().isEmpty()){
+//            double conferenceFees = Double.parseDouble(conferenceTF.getText());
+//            totalExpenses += conferenceFees;
+//        }
+        totalExpenses = getSingleFeeExpense(conferenceTF);
+
+//        if(!taxiChargesTF.getText().isEmpty()){
+//            totalExpenses += (getDays() * DAILY_TAXI_EXPENSE_ALLOWANCE);
+//        }
+        totalExpenses = getCalculatedFeeExpense(taxiChargesTF,DAILY_TAXI_EXPENSE_ALLOWANCE);
+//        if(!parkingFeeTF.getText().isEmpty()){
+//            totalExpenses += (getDays() * DAILY_PARKING_EXPENSE_ALLOWANCE);
+//        }
+        totalExpenses = getCalculatedFeeExpense(parkingFeeTF,DAILY_PARKING_EXPENSE_ALLOWANCE);
+
+//        if(!milesDrivenTF.getText().isEmpty()){
+//            double miles = Double.parseDouble(milesDrivenTF.getText());
+//            if(miles > 0){
+//                totalExpenses += miles * CENTS_PER_MILE_TRAVELED;
+//            } else {
+//                totalExpenses += 0;
+//            }
+//        }
+        totalExpenses = getCalculatedFeeExpense(milesDrivenTF,(int)CENTS_PER_MILE_TRAVELED);
+//        if(!carRentalTF.getText().isEmpty()){
+//            totalExpenses += Double.parseDouble(carRentalTF.getText());
+//        }
+        totalExpenses = getSingleFeeExpense(carRentalTF);
+        return totalExpenses;
+    }
+    private double getSingleFeeExpense(JTextField expenseTextField){
+        if(!expenseTextField.getText().isEmpty()){
+            double fee = Double.parseDouble(expenseTextField.getText().toString());
+            totalExpenses += fee;
         }
-        if(!lodgingTF.getText().isEmpty()){
-            double lodging = Double.parseDouble(lodgingTF.getText().toString());
-            totalExpenses += (getDays() * DAILY_LODGING_EXPENSE_ALLOWANCE);
-        }
-        if(!conferenceTF.getText().isEmpty()){
-            double conferenceFees = Double.parseDouble(conferenceTF.getText());
-            totalExpenses += conferenceFees;
-        }
-        if(!taxiChargesTF.getText().isEmpty()){
-            totalExpenses += (getDays() * DAILY_TAXI_EXPENSE_ALLOWANCE);
-        }
-        if(!parkingFeeTF.getText().isEmpty()){
-            totalExpenses += (getDays() * DAILY_PARKING_EXPENSE_ALLOWANCE);
-        }
-        if(!milesDrivenTF.getText().isEmpty()){
-            double miles = Double.parseDouble(milesDrivenTF.getText());
-            if(miles > 0){
-                totalExpenses += miles * CENTS_PER_MILE_TRAVELED;
-            } else {
-                totalExpenses += 0;
-            }
-        }
-        if(!carRentalTF.getText().isEmpty()){
-            totalExpenses += Double.parseDouble(carRentalTF.getText());
+        return totalExpenses;
+    }
+    private double getCalculatedFeeExpense(JTextField expenseTextField, int constantMultiplier){
+        if(!expenseTextField.getText().isEmpty()){
+            totalExpenses += (getDays() * constantMultiplier);
         }
         return totalExpenses;
     }
