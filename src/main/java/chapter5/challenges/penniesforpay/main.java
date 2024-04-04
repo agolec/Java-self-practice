@@ -9,7 +9,6 @@ public class main {
         int numberToPrintTo = 0;
         String userInput = new String();
         Scanner sc = new Scanner(System.in);
-        final int MINIMUM_ALLOWED_VALUE = 1;
         boolean userInputAboveThreshold = false;
 
         System.out.println("This program will prompt you for how many days you would like to work for.");
@@ -17,12 +16,12 @@ public class main {
         System.out.println();
         System.out.print("Enter a number 1 or higher to print out your pay for: ");
         userInput = sc.nextLine();
-        userInputAboveThreshold = isStringAboveMinimumThreshold(userInput, MINIMUM_ALLOWED_VALUE);
+        userInputAboveThreshold = isStringAboveMinimumThreshold(userInput);
         while(!isStringNumeric(userInput) && !userInputAboveThreshold){
-            System.out.print("Input must be numeric and above" + MINIMUM_ALLOWED_VALUE
+            System.out.print("Input must be numeric and above 0"
                     + ". Enter another integer: ");
             userInput = sc.nextLine();
-            userInputAboveThreshold = isStringAboveMinimumThreshold(userInput, MINIMUM_ALLOWED_VALUE);
+            userInputAboveThreshold = isStringAboveMinimumThreshold(userInput);
         }
         int numberOfDaysUserWorks = Integer.parseInt(userInput);
         printUserPay(numberOfDaysUserWorks);
@@ -54,15 +53,15 @@ public class main {
 
     }
 
-    private static boolean isStringAboveMinimumThreshold(String userInput, int MINIMUM_ALLOWED_VALUE) {
+    private static boolean isStringAboveMinimumThreshold(String userInput) {
         boolean userInputAboveThreshold = false;
+        final int MINIMUM_ALLOWED_VALUE = 1;
+
         if(isStringNumeric(userInput)){
             int primingUserInput = Integer.parseInt(userInput);
-            if(primingUserInput <= MINIMUM_ALLOWED_VALUE){
+            if(primingUserInput >= MINIMUM_ALLOWED_VALUE){
                 userInputAboveThreshold = true;
             }
-        } else{
-            userInputAboveThreshold = false;
         }
         return userInputAboveThreshold;
     }
